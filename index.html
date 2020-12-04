@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html style="height:1100px">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>鳳山高中午餐異物填報系統</title>
+    <link rel="icon" href="/img/favicon.ico" type="image/x-icon"/>
+
+    <!-- TocasUI -->
+    <link href="https://cdn.rawgit.com/TeaMeow/TocasUI/2.3.2/dist/tocas.css" rel='stylesheet'>
+    <script src="https://cdn.rawgit.com/TeaMeow/TocasUI/2.3.2/dist/tocas.js"></script>
+    <!-- jQuery -->
+    <script src="http://code.jquery.com/jquery-3.5.1.js"></script>
+    <!-- jQuery UI -->
+    <link href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" rel="stylesheet"/>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <!-- jQuery Confirm -->
+    <link rel="stylesheet" href="css/jquery-confirm.min.css">
+    <script src="js/jquery-confirm.min.js"></script>
+    <!-- My js -->
+    <script src="js/index.js"></script>
+    <script src="js/config.js"></script>
+</head>
+<body>
+<div class="ts massive very padded slate">
+    <span class="header">鳳山高中午餐異物填報系統</span>
+</div>
+<!-- 表格開始 -->
+<div class="ts grid">
+    <div class="four wide column"></div>
+    <div class="eight wide column">
+        <br>
+        <div class="ts primary segment">
+            <div class="ts form">
+                <fieldset>
+                    <legend>基本資料</legend>
+                    <div class="required fields">
+                        <div class="three wide field">
+                            <label>班級</label>
+                            <input type="number" id="m_class">
+                        </div>
+                        <div class="three wide field">
+                            <label>座號</label>
+                            <input type="number" id="m_number">
+                        </div>
+                        <div class="ten wide field">
+                            <label>姓名</label>
+                            <input type="text" id="m_name">
+                        </div>
+                    </div>
+                </fieldset>
+                <fieldset>
+                    <legend>餐點資訊</legend>
+                    <div class="required field">
+                        <label>餐點日期</label>
+                        <input type="text" id="thedate">
+                        <script>
+                            $(function () {
+                                $("#thedate").datepicker({
+                                    dateFormat: "yy-mm-dd"
+                                });
+                            });
+                        </script>
+                    </div>
+                    <div class="required fields">
+                        <div class="eigth wide field">
+                            <label>廠商名稱</label>
+                            <select id="m_manufacturer">
+                                <option value="御饌坊">御饌坊</option>
+                                <option value="快樂餐">快樂餐</option>
+                                <option value="旺春豐">旺春豐</option>
+                                <option value="素食便當">素食便當</option>
+                                <option value="熱食部">熱食部</option>
+                            </select>
+                        </div>
+                        <div class="eigth wide field">
+                            <label>餐點代號</label>
+                            <select id="m_dishNum">
+                                <option value="A餐">A餐</option>
+                                <option value="B餐">B餐</option>
+                                <option value="C餐">C餐</option>
+                                <option value="D餐">D餐</option>
+                                <option value="E餐">E餐</option>
+                                <option value="乾飯">乾飯</option>
+                            </select>
+                        </div>
+                    </div>
+                </fieldset>
+                <fieldset>
+                    <label class="ts basic clickable dashed slate" for="upload">
+                        <i class="upload symbol icon"></i>
+                        <br><br>
+                        <span class="header" id="upload_header">上傳異物圖片</span>
+                        <span class="description">點擊區塊選擇照片</span>
+                        <br><br>
+                    </label>
+                    <input style="display:none;" type="file" id="upload" class="custom-file-input" accept="image/*">
+                </fieldset>
+            </div>
+        </div>
+        <div class="ts fluid separated vertical buttons">
+            <button class="ts inverted button" onClick="sent()" id="btn">送出</button>
+        </div>
+    </div>
+    <div class="four wide column"></div>
+</div>
+<!---彈出視窗---->
+<div class="ts modals dimmer">
+    <dialog id="thankyou" class="ts tiny modal" open>
+        <div class="header">
+            謝謝您的回報
+        </div>
+        <div class="content">
+            <p>我們已收到您的回報。<br>可以去領退款囉</p>
+        </div>
+        <div class="actions">
+            <button class="ts negative basic button">
+                關閉
+            </button>
+        </div>
+    </dialog>
+</div>
+<script>
+    $(document).ready(function () {
+        init();
+    });
+</script>
+</body>
