@@ -22,14 +22,23 @@
     <script src="js/config.js"></script>
 </head>
 <body>
-<div class="ts massive very padded slate">
+<div class="tablet or large device only ts massive very padded slate">
     <span class="header">鳳山高中午餐異物填報系統</span>
 </div>
-<!-- 表格開始 -->
+<!-- mobile -->
+<div class="mobile only ts massive slate">
+    <span class="header">鳳山高中<br>午餐異物填報系統</span>
+</div>
+<!-- mobile end -->
+<!-- form start -->
 <div class="ts grid">
-    <div class="four wide column"></div>
-    <div class="eight wide column">
+    <div class="tablet or large device only four wide column"></div>
+    <div class="tablet or large device only eight wide column">
         <br>
+		<div class="ts secondary negative message">
+		<div class="header">使用說明：</div>
+			<p>在午餐中發現異物時，可填寫本表單，通知學務處及員生社。<br>填寫完畢後，請持<code>有異物之餐點</code>至學務處衛生組進行確認，經確認後得領取退款，學校將會視嚴重性對廠商進行記點。</p>
+		</div>
         <div class="ts primary segment">
             <div class="ts form">
                 <fieldset>
@@ -86,32 +95,103 @@
                         </div>
                     </div>
                 </fieldset>
-                <fieldset>
-                    <label class="ts basic clickable dashed slate" for="upload">
-                        <i class="upload symbol icon"></i>
-                        <br><br>
-                        <span class="header" id="upload_header">上傳異物圖片</span>
-                        <span class="description">點擊區塊選擇照片</span>
-                        <br><br>
-                    </label>
-                    <input style="display:none;" type="file" id="upload" class="custom-file-input" accept="image/*">
-                </fieldset>
+                   <div class="video">
+				   <video width="100%" height="100%" controls src="http://blog.fios.fssh.khc.edu.tw/wp-content/uploads/2020/03/LOGO.mp4">
+				   </div>
             </div>
         </div>
         <div class="ts fluid separated vertical buttons">
             <button class="ts inverted button" onClick="sent()" id="btn">送出</button>
+			<br><br>
         </div>
-    </div>
-    <div class="four wide column"></div>
+	</div>
+	<!---mobile--->
+		<div class="mobile only one wide column"></div>
+	    <div class="mobile only fourteen wide column">
+        <br>
+		<div class="ts secondary negative message">
+		<div class="header">使用說明：</div>
+			<p>在午餐中發現異物時，可填寫本表單，通知學務處及員生社。<br>填寫完畢後，請持<code>有異物之餐點</code>至學務處衛生組進行確認，經確認後得領取退款，學校將會視嚴重性對廠商進行記點。</p>
+		</div>
+        <div class="ts primary segment">
+            <div class="ts form">
+                <fieldset>
+                    <legend>基本資料</legend>
+                    <div class="required fields">
+                        <div class="three wide field">
+                            <label>班級</label>
+                            <input type="number" id="m_class">
+                        </div>
+                        <div class="three wide field">
+                            <label>座號</label>
+                            <input type="number" id="m_number">
+                        </div>
+                        <div class="ten wide field">
+                            <label>姓名</label>
+                            <input type="text" id="m_name">
+                        </div>
+                    </div>
+                </fieldset>
+                <fieldset>
+                    <legend>餐點資訊</legend>
+                    <div class="required field">
+                        <label>餐點日期</label>
+                        <input type="text" id="thedate">
+                        <script>
+                            $(function () {
+                                $("#thedate").datepicker({
+                                    dateFormat: "yy-mm-dd"
+                                });
+                            });
+                        </script>
+                    </div>
+                    <div class="required fields">
+                        <div class="eigth wide field">
+                            <label>廠商名稱</label>
+                            <select id="m_manufacturer">
+                                <option value="御饌坊">御饌坊</option>
+                                <option value="快樂餐">快樂餐</option>
+                                <option value="旺春豐">旺春豐</option>
+                                <option value="素食便當">素食便當</option>
+                                <option value="熱食部">熱食部</option>
+                            </select>
+                        </div>
+                        <div class="eigth wide field">
+                            <label>餐點代號</label>
+                            <select id="m_dishNum">
+                                <option value="A餐">A餐</option>
+                                <option value="B餐">B餐</option>
+                                <option value="C餐">C餐</option>
+                                <option value="D餐">D餐</option>
+                                <option value="E餐">E餐</option>
+                                <option value="乾飯">乾飯</option>
+                            </select>
+                        </div>
+                    </div>
+                </fieldset>
+                   <div class="video">
+				   <video width="100%" height="100%" controls src="http://blog.fios.fssh.khc.edu.tw/wp-content/uploads/2020/03/LOGO.mp4">
+				   </div>
+            </div>
+        </div>
+        <div class="ts fluid separated vertical buttons">
+            <button class="ts inverted button" onClick="sent()" id="btn">送出</button>
+			<br><br>
+        </div>
+	</div>
+	<div class="mobile only one wide column"></div>
+	<!---mobile end--->
+    <div class="tablet or large device only four wide column"></div>
 </div>
-<!---彈出視窗---->
+<!-- form end -->
+<!---modal start---->
 <div class="ts modals dimmer">
     <dialog id="thankyou" class="ts tiny modal" open>
         <div class="header">
             謝謝您的回報
         </div>
         <div class="content">
-            <p>我們已收到您的回報。<br>可以去領退款囉</p>
+            <p>我們已收到您的回報。<br>請持有異物之餐點至學務處衛生組進行確認！經確認後得領取退款。</p>
         </div>
         <div class="actions">
             <button class="ts negative basic button">
@@ -120,6 +200,7 @@
         </div>
     </dialog>
 </div>
+<!---modal end---->
 <script>
     $(document).ready(function () {
         init();
