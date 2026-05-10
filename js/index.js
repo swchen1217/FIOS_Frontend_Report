@@ -2,6 +2,7 @@ function init() {
     $(".custom-file-input").change(function () {
         $('#upload_header').html($(".custom-file-input").val().split("\\").pop());
     });
+	$('#thedate').val(dayjs().format('YYYY-MM-DD'));
 }
 
 function sent() {
